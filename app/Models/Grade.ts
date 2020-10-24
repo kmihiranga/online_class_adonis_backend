@@ -18,6 +18,9 @@ export default class Grade extends BaseModel {
   @column()
   public slug: string
 
+  @column()
+  public image: string
+
   // define beforesave hook for create slug using from grade type
   @beforeSave()
   public static async slugUrl(grade: Grade) {

@@ -26,4 +26,5 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.resource('grades', 'Api/GradesController')
+  Route.post('grades/:id', 'Api/GradesController.status')
 }).prefix('/api/v1')
