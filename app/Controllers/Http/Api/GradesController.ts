@@ -35,13 +35,6 @@ export default class GradesController {
           table: 'grades',
           column: 'grade_type'
         })
-      ]),
-      slug: schema.string({}, [
-        rules.required(),
-        rules.unique({
-          table: 'grades',
-          column: 'slug'
-        })
       ])
     })
 
@@ -51,8 +44,6 @@ export default class GradesController {
         messages: {
           'grade_type.required': 'The Grade is required',
           'grade_type.unique': 'The Grade is already in use',
-          'slug.unique': 'The slug is already in use',
-          'slug.required': 'The slug is required'
         }
     })
 
@@ -61,6 +52,7 @@ export default class GradesController {
       short_description:request.input('short_description'),
       slug:request.input('grade_type'),
       image: request.input('image'),
+      color: request.input('color')
     })
     if(gradeData.$isPersisted) {
       return response.status(201).json({message: 'Saved Successfully', gradeData: gradeData});
@@ -81,13 +73,6 @@ export default class GradesController {
           table: 'grades',
           column: 'id',
         })
-      ]),
-      slug: schema.string({}, [
-        rules.required(),
-        rules.unique({
-          table: 'grades',
-          column: 'id'
-        })
       ])
     })
 
@@ -97,8 +82,6 @@ export default class GradesController {
         messages: {
           'grade_type.required': 'The Grade is required',
           'grade_type.unique': 'The Grade is already in use',
-          'slug.unique': 'The slug is already in use',
-          'slug.required': 'The slug is required'
         }
     })
 
@@ -106,6 +89,7 @@ export default class GradesController {
     grade.short_description = request.input('short_description')
     grade.slug = request.input('grade_type')
     grade.image = request.input('image')
+    grade.color = request.input('color')
     await grade.save();
     if(grade.$isPersisted) {
       return response.status(200).json({message: 'Updated successfully!', grade: grade})
