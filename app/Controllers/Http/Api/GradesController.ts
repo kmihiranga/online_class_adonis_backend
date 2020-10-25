@@ -90,7 +90,7 @@ export default class GradesController {
     grade.slug = request.input('grade_type')
     grade.image = request.input('image')
     grade.color = request.input('color')
-    await grade.save();
+    await grade.save()
     if(grade.$isPersisted) {
       return response.status(200).json({message: 'Updated successfully!', grade: grade})
     }
